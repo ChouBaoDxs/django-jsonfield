@@ -85,7 +85,7 @@ class JSONField(models.Field):
             if value is None:
                 return None
             elif connection.vendor == 'postgresql' and self.decoder_kwargs.get('cls') is None:
-                if not isinstance(value, str):  # Previous field type is possibly text but not jsonb or json
+                if not isinstance(value, str) or value == '':  # Previous field type is possibly text but not jsonb or json
                     return value
             return json.loads(value, **self.decoder_kwargs)
     else:
@@ -93,7 +93,7 @@ class JSONField(models.Field):
             if value is None:
                 return None
             elif connection.vendor == 'postgresql' and self.decoder_kwargs.get('cls') is None:
-                if not isinstance(value, str):  # Previous field type is possibly text but not jsonb or json
+                if not isinstance(value, str) or value == '':  # Previous field type is possibly text but not jsonb or json
                     return value
             return json.loads(value, **self.decoder_kwargs)
 
