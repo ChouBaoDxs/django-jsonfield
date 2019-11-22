@@ -1,5 +1,5 @@
-django-jsonfield
-================
+django-jsonfield-hotfix
+=======================
 
 1.3.1post1 description
 ----------------------
