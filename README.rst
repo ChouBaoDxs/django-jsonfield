@@ -1,6 +1,23 @@
 django-jsonfield
 ================
 
+1.3.1post1 description
+----------------------
+Fork from django_jsonfield_. Fix postgresql compatibility issue.
+
+.. code-block:: python
+
+    # jsonfield/fields.py
+    def from_db_value(self, value, expression, connection):
+        if value is None:
+            return None
+        elif connection.vendor == 'postgresql' and self.decoder_kwargs.get('cls') is None:
+            # ** add code belong **
+            if not isinstance(value, str):  # Previous field type is possibly text but not jsonb or json
+                return value
+        return json.loads(value, **self.decoder_kwargs)
+
+
 **Maintenance mode only:** It is not recommended you use this library on new
 projects. See the (long) **History** section below for why and alternatives.
 
@@ -64,7 +81,7 @@ Install it with **pip**:
 
 .. code-block:: sh
 
-    pip install django-jsonfield
+    pip install django-jsonfield-hotfix
 
 Then use the field in your models:
 
@@ -299,3 +316,5 @@ Don't fail when trying to install before django is installed.
 0.7
 ~~~
 First tagged release.
+
+.. _django_jsonfield: https://github.com/adamchainz/django-jsonfield

@@ -9,11 +9,11 @@ with open("README.rst") as fp:
     long_description = fp.read()
 
 setup(
-    name="django-jsonfield",
+    name="django-jsonfield-hotfix",
     version=version,
     description="JSONField for django models",
     long_description=long_description,
-    url="https://github.com/adamchainz/django-jsonfield",
+    url="https://github.com/ChouBaoDxs/django-jsonfield",
     author="Matthew Schinckel",
     author_email="matt@schinckel.net",
     maintainer="Adam Johnson",
